@@ -6,7 +6,6 @@ public class ObjectivesManager : MonoBehaviour {
 
     public void AddPoint() {
         points++;
-        Debug.Log(points);
         if(points >= pointsObjective) {
             Debug.Log("Ganaste");
         }
@@ -14,6 +13,5 @@ public class ObjectivesManager : MonoBehaviour {
 
     public void RemovePoint() {
         points = Mathf.Max(points - 1, 0);
-        Debug.Log(points);
     }
 }
