@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour {
         if (keyboard.rKey.wasPressedThisFrame) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        if (keyboard.escapeKey.wasPressedThisFrame) {
+            Application.Quit();
+        }
     }
 
     public void Win() {
