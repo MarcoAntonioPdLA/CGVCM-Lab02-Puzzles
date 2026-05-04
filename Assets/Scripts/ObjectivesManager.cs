@@ -1,13 +1,19 @@
 using UnityEngine;
 
 public class ObjectivesManager : MonoBehaviour {
-    [SerializeField] private int pointsObjective = 4;
+    [SerializeField] private int pointsObjective = 0;
+
+    private GameManager gameManager;
     private int points = 0;
+
+    private void Start() {
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+    }
 
     public void AddPoint() {
         points++;
         if(points >= pointsObjective) {
-            Debug.Log("Ganaste");
+            gameManager.Win();
         }
     }
 
