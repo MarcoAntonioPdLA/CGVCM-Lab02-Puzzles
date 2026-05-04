@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class BoxMovement : MonoBehaviour {
-    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private Tilemap tilemap;
 
     private Vector2Int gridPosition;

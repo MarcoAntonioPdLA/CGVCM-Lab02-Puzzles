@@ -4,7 +4,8 @@ using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour {
     public Tilemap tilemap;
-    [SerializeField] private float moveSpeed = 3f;
+    public LayerMask ignoreLayer;
+    [SerializeField] private float moveSpeed = 4f;
 
     private PlayerInput playerInput;
     private InputAction moveAction;
@@ -57,15 +58,14 @@ public class PlayerMovement : MonoBehaviour {
 
     private void TryMove(Vector3 direction) {
         Vector3 nextPosition = targetPosition + direction;
-        Collider2D hit = Physics2D.OverlapCircle(nextPosition, 0.2f);
+        Collider2D hit = Physics2D.OverlapCircle(nextPosition, 0.2f, ~ignoreLayer);
 
         if (hit == null) {
-            Debug.Log("Hola");
             MoveTo(nextPosition);
         }
         else if (hit.CompareTag("Box")) {
             Vector3 boxTarget = nextPosition + direction;
-            Collider2D nextHit = Physics2D.OverlapCircle(boxTarget, 0.2f);
+            Collider2D nextHit = Physics2D.OverlapCircle(boxTarget, 0.2f, ~ignoreLayer);
             if (nextHit == null) {
                 hit.GetComponent<BoxMovement>().Move(direction);
                 MoveTo(nextPosition);
