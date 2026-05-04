@@ -1,8 +1,20 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
+    private Keyboard keyboard;
     private const int MAX_LEVEL_BUILD_INDEX = 2;
+
+    private void Awake() {
+        keyboard = Keyboard.current;
+    }
+
+    private void Update() {
+        if (keyboard.rKey.wasPressedThisFrame) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
 
     public void Win() {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
